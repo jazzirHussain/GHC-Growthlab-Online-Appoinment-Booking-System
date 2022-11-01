@@ -6,11 +6,13 @@ const nextConfig = {
     loader: 'akamai',
     path: '',
   },
-  rewrites: async () => [
-    {
-      source: "/public/ghc_home/home.html",
-      destination: "/pages/api/home.js",
-    },
-  ],
+  rewrites: async () => {
+    return [
+      {
+        source: '/',
+        destination: '/ghc_home/home.html',
+      },
+    ]
+  },
 }
 module.exports = nextConfig
