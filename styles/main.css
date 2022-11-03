@@ -191,7 +191,7 @@ header.page-header{
 }
 .p-right{
   width: 60%;
-  background-image: url(http://ghcgrowthlab.com/wp-content/uploads/2022/08/service-banner.webp);
+  background-image: url('../public/banner.webp');
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -203,7 +203,7 @@ header.page-header{
   width:40%;
   display: flex;
   justify-content: center;
-  background-image: url(http://ghcgrowthlab.com/wp-content/uploads/2022/07/abstract-white.jpg);
+  background-image: url('../public/abstract-white.jpg');
   background-size: cover;
 }
 .cont-box{
