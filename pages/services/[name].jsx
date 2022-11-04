@@ -82,34 +82,38 @@ export default function Service({service}){
   }
 
   const handleFormSubmit = async ()=>{
-    const config_doc = await getDoc(doc(db,'config','H5IECtArT7Ngo9r5rdj6'))
-    const config = config_doc.data()
-    const data = {
-      email:userEmail,
-      phone:userPhone,
-      name:userName,
-      service_id:service.id,
-      date_slot: selecetdDate,
-      time_slot:correctTime(selectedTime),
-      amount:service.fees,
-      con_type:app_type,
-      status:'pending',
-      post_title:service.post_title
+    if(userEmail && userPhone && userName && selecetdDate && selectedTime && app_type){
+      const config_doc = await getDoc(doc(db,'config','H5IECtArT7Ngo9r5rdj6'))
+      const config = config_doc.data()
+      const data = {
+        email:userEmail,
+        phone:userPhone,
+        name:userName,
+        service_id:service.id,
+        date_slot: selecetdDate,
+        time_slot:correctTime(selectedTime),
+        amount:service.fees,
+        con_type:app_type,
+        status:'pending',
+        post_title:service.post_title
+      }
+      var templateParams = {
+        to_name: 'Manu',
+        from_name:"GHC Growth Lab",
+        message: `A new appoinment has been made for ${service.post_title} by ${userName} on ${selecetdDate}-${currentMonthName}-${curentYear}. Please approve the request\n Link: https://ghcgrowthlab.com/admin/appoinments` ,
+        to_email: config.email
+      };
+      emailjs.send('service_fymwt6q','template_ut5nozq',templateParams,'KbGLQS0YcIzoUFKiy').then(()=>{
+        console.log('succes');
+      }).catch(e=>{
+        console.log(e);
+      })
+      await addDoc(collection(db,'appoinments'),data)
+      clearFields()
+      alert('Appoinmnet Made succesfullyAppoinment Booked Succesfully. Will recieve a mail shortly.')
+    }else{
+      alert("Please fill all the field!")
     }
-    var templateParams = {
-      to_name: 'Manu',
-      from_name:"GHC Growth Lab",
-      message: `A new appoinment has been made for ${service.post_title} by ${userName} on ${selecetdDate}-${currentMonthName}-${curentYear}. Please approve the request\n Link: https://ghcgrowthlab.com/admin/appoinments` ,
-      to_email: config.email
-    };
-    emailjs.send('service_fymwt6q','template_ut5nozq',templateParams,'KbGLQS0YcIzoUFKiy').then(()=>{
-      console.log('succes');
-    }).catch(e=>{
-      console.log(e);
-    })
-    await addDoc(collection(db,'appoinments'),data)
-    clearFields()
-    alert('Appoinmnet Made succesfullyAppoinment Booked Succesfully. Will recieve a mail shortly.')
   }
 
   useEffect(() => {
