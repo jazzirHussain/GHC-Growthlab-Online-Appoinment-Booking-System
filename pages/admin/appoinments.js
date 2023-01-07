@@ -75,7 +75,7 @@ export default function Appoinments({appoinments,approved_appoinments}){
     var evnt = {
       'summary': event.post_title,
       'location': loc,
-      'description': 'GHC Consultation',
+      'description': `${event.name}, ${event.phone}, GHC Consultation`,
       'start': {
         'dateTime': `${event.date_slot}T${correct_time(event.time_slot)}:00:00`,
         'timeZone': 'Asia/Kolkata'
