@@ -110,15 +110,16 @@ export default function Appoinments({appoinments,approved_appoinments}){
       templateParams.message = `Please join google met using the link ${config.meetUrl}`
     }
     console.log(templateParams);
-    emailjs.send('service_fymwt6q','template_88lnyo2',templateParams,'KbGLQS0YcIzoUFKiy').then(()=>{
+    emailjs.send('service_pjc3hk7','template_88lnyo2',templateParams,'KbGLQS0YcIzoUFKiy').then(()=>{
       console.log('succes');
     }).catch(e=>{
       console.log(e);
     })
   }
   const getGoogleAuthorizedEmail =async (evnt,full_event)=>{
-    console.log('getAuthEmail');
+  
       let email = await getSignedInUserEmail();
+      console.log('getAuthEmail',email);
       if (email){
         console.log(evnt);
           publishTheCalenderEvent(evnt,async (err)=>{
@@ -152,6 +153,14 @@ export default function Appoinments({appoinments,approved_appoinments}){
     setLoader(false)
     alert('Appoinment Canceled!')
   }
+
+  // const handleGSignout = ()=>{
+  //   initClient((success)=>{
+  //     if (success){
+  //       signOut()
+  //     }
+  //   });
+  // }
 
   const Row = (appoinment)=>{
     
@@ -199,6 +208,7 @@ export default function Appoinments({appoinments,approved_appoinments}){
   {loader && <div className="login-loader"><span>.</span></div>}
   <div class="a-top">
     <h1>Appoinments</h1>
+    {/* <button onClick={handleGSignout}>Google Signout</button> */}
     <div class="a-list-box">
       <h3>Pending Appoinments</h3>
       {appoinments.length == 0 ? <p>No pending appoinments!!</p>:''}

@@ -94,9 +94,13 @@ export const publishTheCalenderEvent = (event,cb) => {
   }
 }
 
-export const signOut = ()=> {
+export const signOut =async ()=> {
     gapi.auth2.getAuthInstance().signOut().then(function () {
-        auth2.disconnect();
+        gapi.auth2.getAuthInstance().disconnect();
+        // resolve(true)
+    // return new Promise((resolve, reject)=>{
+  
+    // })
 });
 
 }

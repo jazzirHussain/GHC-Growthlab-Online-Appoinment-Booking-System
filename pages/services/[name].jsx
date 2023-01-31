@@ -103,7 +103,7 @@ export default function Service({service}){
         message: `A new appoinment has been made for ${service.post_title} by ${userName} on ${selecetdDate}-${currentMonthName}-${curentYear}. Please approve the request\n Link: https://ghcgrowthlab.com/admin/appoinments` ,
         to_email: config.email
       };
-      emailjs.send('service_fymwt6q','template_ut5nozq',templateParams,'KbGLQS0YcIzoUFKiy').then(()=>{
+      emailjs.send('service_pjc3hk7','template_ut5nozq',templateParams,'KbGLQS0YcIzoUFKiy').then(()=>{
         console.log('succes');
       }).catch(e=>{
         console.log(e);
