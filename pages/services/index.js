@@ -41,7 +41,7 @@ export default function Services({ services }) {
                   <h3 class="s-heading">{service.post_title}</h3>
                   <p>{service.post_content}</p>
                   <div class="s-book-now">
-                    <Link href={`services/${service.post_title}`}><a> <button>Book Now</button></a></Link>
+                    <Link href={service.link||''}><a> <button>Book Now</button></a></Link>
                   </div>
                   {service.isFeaturred ? <div class="cr cr-top cr-left cr-sticky cr-red">Featured</div> : ''}
                 </div>

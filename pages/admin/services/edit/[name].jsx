@@ -28,6 +28,7 @@ export default function Service({service}){
   const [fees, setfees] = useState(service.fees)
   const [time, settime] = useState(service.time)
   const [days, setdays] = useState(service.days)
+  const [link, setlink] = useState(service.link || '')
   const router = useRouter()
 
   const handleEdit =async ()=>{
@@ -36,7 +37,8 @@ export default function Service({service}){
       post_content:desc,
       fees,
       time,
-      days
+      days,
+      link
     }
     await updateDoc(doc(db,'services',service.id),obj)
     router.push('/admin/services')
@@ -78,6 +80,10 @@ export default function Service({service}){
         <label>
           Service days
           <input type="text" value={days} onChange={e=>{setdays(e.target.value)}} />
+        </label>
+        <label>
+          Link
+          <input type="text" value={link} onChange={e=>{setlink(e.target.value)}} />
         </label>
         <div className="but-grp">
         <button className="add-service-but" onClick={handleEdit}>Save</button>
